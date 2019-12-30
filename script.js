@@ -16,4 +16,4 @@ fetch(London, {mode: 'cors'})
 
 // giphy example
 
-let gifKey = 'sWFCiwUq7x829RbfAm6T64mM69y8cJ5C'
+// let gifKey = 'sWFCiwUq7x829RbfAm6T64mM69y8cJ5C'
