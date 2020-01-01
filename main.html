@@ -9,19 +9,40 @@
 
     <body>
         <img src="#"/>
+        <div>
+            <h3> Search for GIFs </h3>
+            <input type="text" class="search">
+        </div>
+        
+        <div>
+            <button> Search </button>
+        </div>
 
 
         <script>
+            function getNewImage (searchTerm) {
+            let value = "checkers";
+                if (searchTerm) {
+                    value = searchTerm;
+                }
             const gifKey = 'sWFCiwUq7x829RbfAm6T64mM69y8cJ5C'
             const image = document.querySelector("img");
-            fetch('https://api.giphy.com/v1/gifs/translate?api_key=sWFCiwUq7x829RbfAm6T64mM69y8cJ5C&s=cats', {mode: 'cors'})
+            return fetch('https://api.giphy.com/v1/gifs/translate?api_key=sWFCiwUq7x829RbfAm6T64mM69y8cJ5C&s=' + value, {mode: 'cors'})
                 .then(function(response) {
                     return response.json();
                 })
                 .then(function(response) {
                     image.src = response.data.images.original.url;
                 });
-        
+            }
+            const getInput = document.querySelector("input")
+            function inputValue () {
+                return getInput.value;
+            }
+            const clicked = document.querySelector("button")
+            clicked.addEventListener("click", function() {
+                getNewImage(inputValue());
+            })
         
         </script>
 
