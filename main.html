@@ -18,34 +18,32 @@
             <button> Search </button>
         </div>
 
-
         <script>
-            function getNewImage (searchTerm) {
-            let value = "checkers";
-                if (searchTerm) {
-                    value = searchTerm;
-                }
-            const gifKey = 'sWFCiwUq7x829RbfAm6T64mM69y8cJ5C'
-            const image = document.querySelector("img");
-            return fetch('https://api.giphy.com/v1/gifs/translate?api_key=sWFCiwUq7x829RbfAm6T64mM69y8cJ5C&s=' + value, {mode: 'cors'})
-                .then(function(response) {
-                    return response.json();
-                })
-                .then(function(response) {
-                    image.src = response.data.images.original.url;
-                });
+            // Switched to async/await
+            async function getNewImage (searchTerm) {
+                const gifKey = 'sWFCiwUq7x829RbfAm6T64mM69y8cJ5C'
+                const image = document.querySelector("img");
+
+                let value = "checkers";
+                    if (searchTerm) {
+                        value = searchTerm;
+                    }
+                
+                const response = await fetch('https://api.giphy.com/v1/gifs/translate?api_key=sWFCiwUq7x829RbfAm6T64mM69y8cJ5C&s=' + value, {mode: 'cors'})
+                const gifData = await response.json();
+                
+                image.src = gifData.data.images.original.url;
             }
-            const getInput = document.querySelector("input")
+
+            Input = document.querySelector("input")
             function inputValue () {
                 return getInput.value;
             }
+
             const clicked = document.querySelector("button")
             clicked.addEventListener("click", function() {
                 getNewImage(inputValue());
             })
-        
         </script>
-
     </body>
-
 </html>
